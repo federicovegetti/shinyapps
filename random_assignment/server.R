@@ -11,7 +11,9 @@ shinyServer(function(input, output) {
     m1 <- input$m1
     sd1 <- input$sd1
     sample <- round(rnorm(n1, m1, sd1))
-    df <- data.frame(Value = sample)
+    df <- data.frame(Value = sample, 
+                     Mean = c(round(mean(sample), 2), rep("", length(sample)-1)),
+                     SD = c(round(sd(sample), 2), rep("", length(sample)-1)))
   })
   
   output$table1 <- renderTable({
@@ -27,6 +29,7 @@ shinyServer(function(input, output) {
   })
   
   output$table2 <- renderTable({
+    input$refresh
     ng <- input$ng
     df <- data()
     val <- df$Value
@@ -35,9 +38,9 @@ shinyServer(function(input, output) {
       
       dfchunk <- split(val, sample(1:ng, length(val), replace = T))
       
-      res <- data.frame(cbind(sapply(dfchunk, length), sapply(dfchunk, mean)))
+      res <- data.frame(cbind(sapply(dfchunk, length), sapply(dfchunk, mean), sapply(dfchunk, sd)))
       row.names(res) <- paste0("Group ", seq(1:ng))
-      names(res) <- c("N", "Mean")
+      names(res) <- c("N", "Mean", "SD")
       
       print(res)
     } else {

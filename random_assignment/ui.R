@@ -15,7 +15,7 @@ shinyUI(fluidPage(
              sidebarPanel(
                numericInput("n1", "Number of Observations", 20),
                numericInput("m1", "Mean of the Population", 100),
-               numericInput("sd1", "Standard deviation of the population", 10)
+               numericInput("sd1", "Standard Deviation of the population", 10)
              ),
              
              # Show a table of the generated distribution
@@ -25,14 +25,16 @@ shinyUI(fluidPage(
            )),
     column(6,
            # Application title
-           titlePanel("Random Assingment to Conditions"),
+           titlePanel("Random Assingment to Groups"),
            # Sidebar with a slider input for number of observations
            sidebarLayout(
              sidebarPanel(
-               numericInput("ng", "Number of Groups", 2)
+               numericInput("ng", "Number of Groups", 1),
+               actionButton(inputId = "refresh",
+                            label = "Refresh", icon = icon("fa fa-refresh"))
              ),
              
-             # Show a table of the generated distribution
+             # Show a table of the means
              mainPanel(
                tableOutput("table2")
              )
