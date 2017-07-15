@@ -2,4 +2,4 @@
 
 For work and fun
 
-* https://federicovegetti.shinyapps.io/sampling_norm/
+* https://federicovegetti.shinyapps.io/random_assignment/
