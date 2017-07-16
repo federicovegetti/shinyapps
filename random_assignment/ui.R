@@ -1,32 +1,36 @@
 # User-interface definition
-# Inspired by: Josh de Leeuw (https://github.com/jodeleeuw)
-#
+# Loosely inspired by: https://k300apps.shinyapps.io/random-normal-data/
+# by Josh de Leeuw (https://github.com/jodeleeuw)
 
 library(shiny)
 
-shinyUI(fluidPage(
-  
-  fluidRow(
+shinyUI(
+  # Set fluid page layout
+  fluidPage(fluidRow(
+    
+    # Panel 1 (left)
     column(6,
-           # Application title
+           # Panel 1 title
            titlePanel("Random Data from a Normal Distribution"),
-           # Sidebar with a slider input for number of observations
+           # Sidebar with parameters input
            sidebarLayout(
              sidebarPanel(
-               numericInput("n1", "Number of Observations", 20),
-               numericInput("m1", "Mean of the Population", 100),
-               numericInput("sd1", "Standard Deviation of the population", 10)
+               numericInput("n", "Number of Observations", 20),
+               numericInput("m", "Mean of the Population", 100),
+               numericInput("sd", "Standard Deviation of the population", 10)
              ),
              
-             # Show a table of the generated distribution
+             # Table of the generated distribution
              mainPanel(
                tableOutput("table1")
              )
            )),
+    
+    # Panel 2 (right)
     column(6,
-           # Application title
+           # Panel 2 title
            titlePanel("Random Assingment to Groups"),
-           # Sidebar with a slider input for number of observations
+           # Sidebar with number of groups input and refresher
            sidebarLayout(
              sidebarPanel(
                numericInput("ng", "Number of Groups", 1),
@@ -34,7 +38,7 @@ shinyUI(fluidPage(
                             label = "Refresh", icon = icon("fa fa-refresh"))
              ),
              
-             # Show a table of the means
+             # Table of the group parameters
              mainPanel(
                tableOutput("table2")
              )
