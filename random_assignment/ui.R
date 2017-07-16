@@ -29,7 +29,7 @@ shinyUI(
     # Panel 2 (right)
     column(6,
            # Panel 2 title
-           titlePanel("Random Assingment to Groups"),
+           titlePanel("Random Assignment to Groups"),
            # Sidebar with number of groups input and refresher
            sidebarLayout(
              sidebarPanel(
